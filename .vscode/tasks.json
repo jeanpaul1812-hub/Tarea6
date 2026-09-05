@@ -144,7 +144,7 @@
 			"command": "C:\\Windows\\System32\\cmd.exe",
 			"args": [
 				"/c",
-				"set CATALINA_HOME=C:\\Servers\\TOMCAT~1.0 & set CATALINA_BASE=C:\\Servers\\TOMCAT~1.0 & call C:\\Servers\\TOMCAT~1.0\\bin\\startup.bat"
+				"call C:\\Servers\\TOMCAT~1.0\\bin\\startup.bat"
 			],
 			"isBackground": false,
 			"problemMatcher": []
@@ -155,7 +155,7 @@
 			"command": "C:\\Windows\\System32\\cmd.exe",
 			"args": [
 				"/c",
-				"set \"CATALINA_HOME=C:\\Servers\\Tomcat 11.0\" & set \"CATALINA_BASE=C:\\Servers\\Tomcat 11.0\" & call \"C:\\Servers\\Tomcat 11.0\\bin\\startup.bat\""
+				"set \"CATALINA_HOME=C:\\Servers\\Tomcat 11.0\" && set \"CATALINA_BASE=C:\\Servers\\Tomcat 11.0\" && call \"C:\\Servers\\Tomcat 11.0\\bin\\startup.bat\""
 			],
 			"isBackground": false,
 			"problemMatcher": []
@@ -166,7 +166,7 @@
 			"command": "C:\\Windows\\System32\\cmd.exe",
 			"args": [
 				"/c",
-				"set CATALINA_HOME=C:\\Servers\\TOMCAT~1.0&&set CATALINA_BASE=C:\\Servers\\TOMCAT~1.0&&call C:\\Servers\\TOMCAT~1.0\\bin\\shutdown.bat&&call C:\\Servers\\TOMCAT~1.0\\bin\\startup.bat"
+				"set CATALINA_HOME=C:\\Servers\\TOMCAT~1.0&&set CATALINA_BASE=C:\\Servers\\TOMCAT~1.0&&call C:\\Servers\\TOMCAT~1.0\\bin\\shutdown.bat & call C:\\Servers\\TOMCAT~1.0\\bin\\startup.bat"
 			],
 			"isBackground": false,
 			"problemMatcher": []
@@ -201,7 +201,7 @@
 			"command": "C:\\Windows\\System32\\cmd.exe",
 			"args": [
 				"/c",
-				"set CATALINA_HOME=C:\\Servers\\TOMCAT~1.0&&set CATALINA_BASE=C:\\Servers\\TOMCAT~1.0&&call C:\\Servers\\TOMCAT~1.0\\bin\\shutdown.bat&&call C:\\Servers\\TOMCAT~1.0\\bin\\startup.bat"
+				"set CATALINA_HOME=C:\\Servers\\TOMCAT~1.0&&set CATALINA_BASE=C:\\Servers\\TOMCAT~1.0&&call C:\\Servers\\TOMCAT~1.0\\bin\\shutdown.bat & call C:\\Servers\\TOMCAT~1.0\\bin\\startup.bat"
 			],
 			"isBackground": false,
 			"problemMatcher": []

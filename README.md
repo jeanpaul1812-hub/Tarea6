@@ -1,6 +1,18 @@
 # Inventario Diecast
 
-Aplicacion web Java EE para administrar una coleccion de autos diecast. Usa Servlets, JSP/JSTL, DAO, JDBC y MariaDB, y se despliega como WAR en Apache Tomcat.
+Aplicacion web para administrar una coleccion de autos diecast. La aplicacion incorpora Spring Boot, Spring MVC, Spring Data JPA, Spring Security y una API RESTful, y se despliega como WAR en Apache Tomcat.
+
+El proyecto conserva las vistas JSP y los Servlets existentes para mantener el flujo web actual, mientras que los nuevos servicios REST usan la arquitectura Spring.
+
+## Tecnologias en uso
+
+- **Spring Boot 3.3.5**: punto de entrada de la aplicacion, autoconfiguracion y empaquetado WAR mediante Maven.
+- **Spring MVC**: controladores web y REST basados en anotaciones.
+- **Spring Data JPA**: entidades `CarEntity` y `UserEntity`, junto con `CarRepository` y `UserRepository`, para persistir en MariaDB.
+- **Spring Security**: autenticacion HTTP Basic para la API y roles `ADMIN`/`USER` derivados del campo `usuarios.administrador`.
+- **REST**: `CarRestController` expone operaciones CRUD JSON bajo `/api/autos`.
+- **Maven**: gestiona dependencias, compilacion, pruebas y generacion del WAR.
+- **MVC**: las vistas JSP/Servlet existentes siguen atendiendo la interfaz web; Spring MVC atiende la nueva capa REST.
 
 ## Funcionalidades
 
@@ -12,9 +24,27 @@ Aplicacion web Java EE para administrar una coleccion de autos diecast. Usa Serv
 - Paginacion del inventario.
 - Franja visual de marcas: Hot Wheels, Matchbox, M2 Machines, Majorette y GreenLight.
 
+## API REST
+
+La API requiere autenticacion HTTP Basic. Las consultas requieren cualquier usuario autenticado; las altas, modificaciones y eliminaciones requieren el rol administrador.
+
+| Metodo | Ruta | Permiso | Funcion |
+| --- | --- | --- | --- |
+| `GET` | `/api/autos` | Usuario autenticado | Lista piezas |
+| `GET` | `/api/autos/{id}` | Usuario autenticado | Consulta una pieza |
+| `POST` | `/api/autos` | Administrador | Crea una pieza |
+| `PUT` | `/api/autos/{id}` | Administrador | Actualiza una pieza |
+| `DELETE` | `/api/autos/{id}` | Administrador | Elimina una pieza |
+
+Ejemplo de consulta:
+
+```powershell
+curl.exe -u admin:admin123 http://localhost:8080/inventario-diecast/api/autos
+```
+
 ## Requisitos
 
-- JDK 11 o superior.
+- JDK 17 o superior.
 - Apache Maven 3.9 o superior.
 - MariaDB.
 - Apache Tomcat 11 (compatible con Jakarta Servlet).
@@ -25,8 +55,8 @@ Aplicacion web Java EE para administrar una coleccion de autos diecast. Usa Serv
 2. Configurar estas variables de entorno para Tomcat:
 
    - `DB_URL`: por defecto `jdbc:mariadb://localhost:3306/diecast_db`
-   - `DB_USER`: por defecto `root`
-   - `DB_PASSWORD`: por defecto `admin`
+   - `DB_USER`: por defecto
+   - `DB_PASSWORD`: por defecto
 
 3. Usuario inicial:
 
@@ -62,9 +92,12 @@ La aplicacion redirige al formulario de inicio de sesion.
 
 ```text
 src/main/java/com/trabajo6/
-  controller/  Servlets y filtro de autenticacion
-  dao/         Acceso a MariaDB
-  model/       Entidades Car y User
+  controller/  Servlets y flujo web heredado
+  dao/         Acceso JDBC heredado
+  jpa/         Entidades y repositorios Spring Data JPA
+  rest/        Controladores Spring MVC REST
+  security/    Configuracion Spring Security
+  model/       Entidades del flujo web heredado
 src/main/webapp/
   WEB-INF/views/  Vistas JSP
   assets/css/     Estilos
