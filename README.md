@@ -46,8 +46,8 @@ La conexión se puede configurar mediante variables de entorno:
 | Variable | Valor predeterminado |
 | --- | --- |
 | `DB_URL` | `jdbc:mariadb://localhost:3306/diecast_db` |
-| `DB_USER` | `root` |
-| `DB_PASSWORD` | `admin` |
+| `DB_USER` | `Su-Usuario` |
+| `DB_PASSWORD` | `Su-Clave` |
 
 ## Ejecutar localmente
 
