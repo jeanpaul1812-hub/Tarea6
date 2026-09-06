@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" version="6.1">
-  <display-name>Inventario Diecast</display-name>
-  <welcome-file-list><welcome-file>login</welcome-file></welcome-file-list>
-  <session-config><session-timeout>30</session-timeout></session-config>
-</web-app>
