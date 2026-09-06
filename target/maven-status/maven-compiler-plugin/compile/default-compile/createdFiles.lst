@@ -1,6 +1,7 @@
 com\trabajo6\dao\CarDAO.class
 com\trabajo6\controller\AuthFilter.class
 com\trabajo6\controller\WebLoginController.class
+com\trabajo6\controller\CarCsvParser.class
 com\trabajo6\controller\HomeController.class
 com\trabajo6\jpa\UserEntity.class
 com\trabajo6\jpa\CarRepository.class

@@ -53,5 +53,19 @@ public class CarDAO {
         }
     }
     public void delete(int id) throws SQLException { try (Connection cn = Database.getConnection(); PreparedStatement ps = cn.prepareStatement("DELETE FROM diecast WHERE id=?")) { ps.setInt(1, id); ps.executeUpdate(); } }
+    public void replaceAll(List<Car> cars) throws SQLException {
+        try (Connection cn = Database.getConnection()) {
+            cn.setAutoCommit(false);
+            try (Statement delete = cn.createStatement(); PreparedStatement insert = cn.prepareStatement("INSERT INTO diecast (id, marca, modelo, codigo, anio, numero, color, serie, otro, thunt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                delete.executeUpdate("DELETE FROM diecast");
+                for (Car car : cars) {
+                    insert.setInt(1, car.getId()); insert.setString(2, car.getMarca()); insert.setString(3, car.getModelo()); insert.setString(4, car.getCodigo()); insert.setInt(5, car.getAnio()); insert.setInt(6, car.getNumero()); insert.setString(7, car.getColor()); insert.setString(8, car.getSerie()); insert.setString(9, car.getOtro()); insert.setString(10, car.getThunt()); insert.addBatch();
+                }
+                insert.executeBatch();
+                cn.commit();
+            } catch (SQLException exception) { cn.rollback(); throw exception; }
+            finally { cn.setAutoCommit(true); }
+        }
+    }
     private Car map(ResultSet rs) throws SQLException { return new Car(rs.getInt("id"), rs.getString("marca"), rs.getString("modelo"), rs.getString("codigo"), rs.getInt("anio"), rs.getInt("numero"), rs.getString("color"), rs.getString("serie"), rs.getString("otro"), rs.getString("thunt")); }
 }
